@@ -1,0 +1,40 @@
+<div class="filter">
+  <h2>Filter</h2>
+  <ul>
+    <li *ngFor="let item of headers">
+      <button class="filter-headers" (click)="toggleList(item.headerJSName)">
+        <span> {{ item.headerTitle }}</span>
+      </button>
+
+      <ul *ngIf="selectedCategory == item.headerJSName">
+        <li *ngFor="let projectItem of project">
+          <input
+            type="checkbox"
+            name="myCheckbox"
+            id="myCheckbox{{ projectItem.id }}"
+            [checked]="checkboxStates[item.headerJSName][projectItem.id]"
+            (change)="
+              addFilter(
+                projectItem.id,
+                selectedCategory,
+                projectItem[item.headerJSName].toString(),
+                $event
+              )
+            "
+          />
+
+          <span class="filter-options">{{
+            projectItem[item.headerJSName]
+          }}</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="list-filters">
+    <li class="list-filters_selected" *ngFor="let filter of selectedFilters">
+      {{ transform(filter.Category) + ": " + filter.Item }}
+    </li>
+  </ul>
+</div>
+

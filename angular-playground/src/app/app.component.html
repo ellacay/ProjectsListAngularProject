@@ -1,0 +1,11 @@
+<app-drop-down
+  (FilterArrayParams)="addFilterArray($event)"
+  [project]="projectData"
+  [headers]="headerData"
+  [selectedFilters]="filterOptions"
+></app-drop-down>
+
+<app-project-list
+  [filtered]="filterResults"
+  [project]="projectData"
+></app-project-list>
